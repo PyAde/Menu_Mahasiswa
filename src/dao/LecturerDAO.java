@@ -134,7 +134,47 @@ public class LecturerDAO {
         return lecturers;
     }
 
+    public List<Lecturer> searchLecturer(String keyword) { 
+        List<Lecturer> lecturers = new ArrayList<>();
 
+        try {
+
+            String sql = "SELECT * FROM lecturer WHERE name LIKE ? OR nidn LIKE ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            
+
+            stmt.setString(1, "%" + keyword + "%");
+            stmt.setString(2, "%" + keyword + "%");
+            
+
+            ResultSet rs = stmt.executeQuery();
+            
+
+            while (rs.next()) {
+
+                String name = rs.getString("name");
+                String cardId = rs.getString("cardID");
+                String nidn = rs.getString("nidn");
+                String expertise = rs.getString("expertise");
+
+
+                Lecturer dosenBaru = new Lecturer(cardId, name, nidn, expertise);
+                
+
+                dosenBaru.setCreatedAt(rs.getTimestamp("createdAt"));
+                dosenBaru.setUpdatedAt(rs.getTimestamp("updatedAt"));
+                
+
+                lecturers.add(dosenBaru);
+            }
+        } catch (SQLException e) {
+            System.err.println("Gagal melakukan pencarian dosen: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return lecturers;
+    }
+    
     public ArrayList<Lecturer> getAllLecturer() {
         ArrayList<Lecturer> list = new ArrayList<>();
         String sql = "SELECT * FROM lecturer";
@@ -161,9 +201,5 @@ public class LecturerDAO {
             e.printStackTrace();
         }
         return list;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

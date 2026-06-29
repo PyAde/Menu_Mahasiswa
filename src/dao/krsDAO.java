@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
 
 /**
@@ -27,8 +23,7 @@ import java.util.logging.Logger;
 public class krsDAO {
     private Connection connection;
 
-
-public krsDAO() {
+    public krsDAO() {
         try {
             connection = DBConnection.getConnection();
         } catch (SQLException ex) {
@@ -36,7 +31,6 @@ public krsDAO() {
         }
     }
 
-    // 1. CREATE
     public int create(KRS krs) {
         try {
             String sql = "INSERT INTO krs (code, nim, nidn, semester, score, grade, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())";
@@ -63,7 +57,6 @@ public krsDAO() {
             return 0;
         }
     }
-
 
     public List<KRS> getAllKRS() {
         List<KRS> listKrs = new ArrayList<>();
@@ -102,7 +95,7 @@ public krsDAO() {
         return listKrs;
     }
 
-    // 3. UPDATE
+
     public int update(KRS krs) {
         try {
             String sql = "UPDATE krs SET score=?, grade=?, semester=?, nidn=?, updatedAt=NOW() WHERE code=?";
@@ -129,10 +122,9 @@ public krsDAO() {
         }
     }
 
-    // 4. DELETE
+
     public int delete(String code) {
         try {
-
             String sql = "DELETE FROM krs WHERE code=?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, code);
@@ -144,4 +136,46 @@ public krsDAO() {
             return 0;
         }
     }
-}
+
+   public List<KRS> searchKRS(String keyword) {
+        List<KRS> list = new ArrayList<>();
+        try {
+
+            String sql = "SELECT * FROM krs WHERE "+ "nim LIKE ? OR " + "nim IN (SELECT NIM FROM students WHERE name LIKE ?) OR "+ "code LIKE ?";                                             
+                       
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, "%" + keyword + "%"); 
+            stmt.setString(2, "%" + keyword + "%"); 
+            stmt.setString(3, "%" + keyword + "%"); 
+          
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Course dummyCourse = new Course(rs.getString("code"), "", 0, 0); 
+                KRS krs = new KRS(dummyCourse, rs.getDouble("score"));
+                
+                krs.setSemester(rs.getInt("semester"));
+                krs.setGrade(rs.getString("grade")); 
+
+                String nim = rs.getString("nim");
+                if (nim != null) {
+                    Student dummyStudent = new Student("", "", nim, "");
+                    dummyStudent.setNim(nim);
+                    krs.setStudent(dummyStudent);
+                }
+
+                String nidn = rs.getString("nidn");
+                if (nidn != null) {
+                    Lecturer dummyLecturer = new Lecturer(); 
+                    dummyLecturer.setNidn(nidn); 
+                    krs.setLecture(dummyLecturer);
+                }
+                
+                list.add(krs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+} 

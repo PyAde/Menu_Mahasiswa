@@ -18,12 +18,24 @@ public class StudentController {
     private final StudentDAO studentDAO = new StudentDAO();
 
     public int create(Student student) {
+        if (student.getNim() == null || student.getName() == null) {
+            return 0;
+        }
         return studentDAO.create(student);
     }
 
     public List<Student> getStudent() {
         return studentDAO.getStudent();
     }
+
+    public List<Student> searchStudent(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty() || keyword.equalsIgnoreCase("Pencarian")) {
+            return studentDAO.getStudent(); 
+        }
+        
+        return studentDAO.searchStudent(keyword.trim());
+    }
+
     public int update(Student student, String nimLama) {
         return studentDAO.update(student, nimLama);
     }

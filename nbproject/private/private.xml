@@ -3,23 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/view/Dashboard.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/view/InputNilai.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/view/StudentForm.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/controller/StudentController.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/dao/StudentDAO.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/config/DBConnection.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/dao/krsDAO.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/controller/LecturerController.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/model/Lecturer.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/view/LecturerForm.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/view/CourseForm.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/model/Course.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/dao/LecturerDAO.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/dao/CourseDAO.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/model/KRS.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/model/Person.java</file>
-            <file>file:/home/pyade/Dokumen/NeatbeansApp/JavaGUI/src/controller/KRSController.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/dao/CourseDAO.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/dao/LecturerDAO.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/javaapplication_hello/JavaApplication_Hello.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/view/LecturerForm.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/view/Dashboard.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/view/InputNilai.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/controller/CourseController.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/view/StudentForm.java</file>
+            <file>file:/home/pyade/Unduhan/Menu_Mahasiswa-main%20(1)/Menu_Mahasiswa-main/src/view/CourseForm.java</file>
         </group>
     </open-files>
 </project-private>

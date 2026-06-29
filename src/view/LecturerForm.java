@@ -76,7 +76,32 @@ public class LecturerForm extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+    private void refreshLecturerTable(List<Lecturer> dataList) {
+       
+        this.listDosen = dataList; 
+        
 
+        DefaultTableModel model = (DefaultTableModel) jTableLecturer.getModel();
+        model.setRowCount(0);
+
+ 
+        for (Lecturer r : dataList) {
+            Object[] newLine = new Object[]{
+                r.getName(),
+                r.getIdCard(),
+                r.getNidn(),
+                r.getExpertise()
+            };
+            model.addRow(newLine);
+        }
+
+       
+        if (jTableLecturer.getRowCount() > 0) {
+            jTableLecturer.setRowSelectionInterval(0, 0);
+            currentIndex = 0; 
+            tampilkanData(currentIndex);
+        }
+    }
     private void clearForm() {
         jTextFieldNama.setText("");
         jTextFieldCardID.setText("");
@@ -154,15 +179,13 @@ public class LecturerForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setText("Lecturer");
 
-        jTextFieldCardID.setText("CardID");
-
-        jTextFieldNama.setText("Nama");
+        jTextFieldNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNamaActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("NIDN");
-
-        jTextFieldNIDN.setText("NIDN");
-
-        jTextFieldSearch.setText("Pencarian");
 
         jToggleButtonSearch.setText("Cari");
         jToggleButtonSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -170,8 +193,6 @@ public class LecturerForm extends javax.swing.JFrame {
                 jToggleButtonSearchActionPerformed(evt);
             }
         });
-
-        jTextFieldExpertise.setText("Expertise");
 
         jButtonSimpan.setText("Simpan");
         jButtonSimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +219,7 @@ public class LecturerForm extends javax.swing.JFrame {
 
         jLabel7.setText("NAMA");
 
-        jLabel8.setText("CARDID");
+        jLabel8.setText("NIK");
 
         jLabel9.setText("EXPERTISE");
 
@@ -381,7 +402,7 @@ public class LecturerForm extends javax.swing.JFrame {
             String messageSucces = "";
             if(this.nidnLama.equals("")){
                 hasil = controller.create(lecturer);
-                messageSucces = "Data dosen berhasil disimpan ke database!"; 
+                messageSucces = "Data dosen berhasil disimpan!"; 
             }else{
                 hasil = controller.update(lecturer, this.nidnLama);
                 messageSucces = "Data dosen berhasil diperbarui!"; 
@@ -393,12 +414,7 @@ public class LecturerForm extends javax.swing.JFrame {
 
                 loadLecturerData();
                 clearForm();
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this,
-                        "Gagal menyimpan data. Silakan cek koneksi atau struktur tabel MySQL.",
-                        "Error",
-                        javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
+            } 
 
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this,
@@ -499,37 +515,32 @@ public class LecturerForm extends javax.swing.JFrame {
 
     private void jToggleButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSearchActionPerformed
         // TODO add your handling code here:
-        selectedName = jTextFieldSearch.getText().trim();
-        LecturerDAO lecturerDAO = new LecturerDAO();
+       String keyword = jTextFieldSearch.getText().trim();
         List<Lecturer> dataHasil;
-        if (selectedName.isEmpty()) {
-            dataHasil = lecturerDAO.getLecturer();
-
+        
+      
+        if (keyword.isEmpty()) {
+            dataHasil = controller.getLecturer();
         } else {
-            dataHasil = lecturerDAO.seacrhLecturer(selectedName);
+            
+            dataHasil = controller.searchLecturer(keyword);
         }
 
-        DefaultTableModel model = (DefaultTableModel) jTableLecturer.getModel();
-        model.setRowCount(0);
 
-        for (Lecturer r : dataHasil) {
-            Object[] newLine = new Object[]{
-                r.getName(),
-                r.getIdCard(),
-                r.getNidn(),
-                r.getExpertise()
-            };
-            model.addRow(newLine);
-        }
-        if (jTableLecturer.getRowCount() > 0) {
-            jTableLecturer.setRowSelectionInterval(0, 0);
-        } else {
+        refreshLecturerTable(dataHasil);
+
+
+        if (dataHasil.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this,
                     "Data dosen tidak ditemukan!",
                     "Pencarian",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jToggleButtonSearchActionPerformed
+
+    private void jTextFieldNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNamaActionPerformed
 
     /**
      * @param args the command line arguments

@@ -31,7 +31,6 @@ public class StudentDAO {
         }
     }
 
-// Membuat object student
     public int create(Student student) {
         try {
 
@@ -52,7 +51,6 @@ public class StudentDAO {
         return 0;
     }
 
-// Membaca data student
     public List<Student> getStudent() {
         List<Student> students = new ArrayList<>();
 
@@ -82,7 +80,6 @@ public class StudentDAO {
         return students;
     }
 
-// Update
     public int update(Student student, String nimLama) {
         try {
 
@@ -104,7 +101,7 @@ public class StudentDAO {
         }
     }
 
-//Delete
+
     public int delete(String nim) {
         try {
             String sql = "DELETE FROM students WHERE NIM=?";
@@ -119,19 +116,19 @@ public class StudentDAO {
         }
     }
 
-// Search
-    public List<Student> searchStudent(String keyword) {
+
+   public List<Student> searchStudent(String keyword) {
         List<Student> students = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM students WHERE name LIKE ?";
+            String sql = "SELECT * FROM students WHERE name LIKE ? OR NIM LIKE ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, "%" + keyword + "%");
+            stmt.setString(2, "%" + keyword + "%");
 
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-
                 String cardID = rs.getString("NIK");
                 String NIM = rs.getString("NIM");
                 String name = rs.getString("name");
@@ -152,7 +149,7 @@ public class StudentDAO {
         return students;
     }
 
-// Mengambil seluruh data
+
     public ArrayList<Student> getAllStudents() {
         ArrayList<Student> list = new ArrayList<>();
         String sql = "SELECT * FROM students";

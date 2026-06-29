@@ -227,14 +227,11 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="jTextFieldCardID">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="CardID"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNama">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nama"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNamaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -242,14 +239,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNIDN">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="NIDN"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldSearch">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pencarian"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jToggleButtonSearch">
           <Properties>
@@ -260,9 +251,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldExpertise">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Expertise"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSimpan">
           <Properties>
@@ -299,7 +287,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CARDID"/>
+            <Property name="text" type="java.lang.String" value="NIK"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 import dao.krsDAO;
@@ -21,6 +17,14 @@ public class KRSController {
     }
 
     public int create(KRS krs) {
+        if(krs.getScore() < 0 || krs.getScore() > 100){
+            System.err.println("Nilai KRS harus berada di rentang 0 hingga 100");
+            return 0; 
+        }
+        if(krs.getCourse() == null){
+            System.err.println("Mata kuliah belum dipilih");
+            return 0;
+        }
         return krsDAO.create(krs);
     }
 
@@ -35,4 +39,9 @@ public class KRSController {
     public int delete(String kodeMk) {
         return krsDAO.delete(kodeMk);
     }
-}
+
+   
+    public List<KRS> searchKRS(String keyword) {
+        return krsDAO.searchKRS(keyword);
+    }
+} 

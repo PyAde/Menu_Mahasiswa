@@ -100,7 +100,6 @@ public class CourseDAO {
         }
     }
 
-    // 4. Delete Course
     public int delete(String courseCode) {
         try {
    
@@ -115,28 +114,32 @@ public class CourseDAO {
         }
     }
 
-    // 5. Search Course
-    public List<Course> searchCourse(String keyword) {
-        List<Course> courses = new ArrayList<>();
-        try {
 
-            String sql = "SELECT * FROM courses WHERE name LIKE ?";
+    public List<Course> searchCourse(String keyword) {
+        List<Course> list = new ArrayList<>();
+        try {
+           
+            String sql = "SELECT * FROM courses WHERE code LIKE ? OR name LIKE ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
+            
             stmt.setString(1, "%" + keyword + "%");
+            stmt.setString(2, "%" + keyword + "%");
             
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String code = rs.getString("code");
-                String name = rs.getString("name");
-                int sks = rs.getInt("sks");
-                int semester = rs.getInt("semester");
+                Course course = new Course(
+                        rs.getString("code"), 
+                        rs.getString("name"),
+                        rs.getInt("sks"), 
+                        rs.getInt("semester")
+                );
 
-                courses.add(new Course(code, name, sks, semester));
+                list.add(course);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return courses;
+        return list;
     }
     
 
@@ -162,7 +165,5 @@ public class CourseDAO {
         }
         return matchedCourses;
     }
-
-
 
 }

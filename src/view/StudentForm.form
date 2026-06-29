@@ -131,7 +131,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="MASTER STUDENT"/>
+        <Property name="text" type="java.lang.String" value="STUDENT"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -218,9 +218,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="jTextFieldNama">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nama"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNamaActionPerformed"/>
           </Events>
@@ -231,9 +228,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNIK">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="NIK"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNIKActionPerformed"/>
           </Events>
@@ -281,9 +275,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNIM">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="NIM"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldNIMActionPerformed"/>
           </Events>
