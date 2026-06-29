@@ -64,15 +64,30 @@ public class LecturerForm extends javax.swing.JFrame {
         }
     }
 
-    private void tampilkanData(int index) {
-        try {
+     private void tampilkanData(int index) {
+       try {
             if (index >= 0 && index < jTableLecturer.getRowCount()) {
+              
                 String name = jTableLecturer.getValueAt(index, 0).toString();
-                String id = jTableLecturer.getValueAt(index, 1).toString();
+                String nik = jTableLecturer.getValueAt(index, 1).toString();
                 String nidn = jTableLecturer.getValueAt(index, 2).toString();
                 String expertise = jTableLecturer.getValueAt(index, 3).toString();
+
+
+                jTextFieldNama.setText(name);
+                jTextFieldCardID.setText(nik);     
+                jTextFieldNIDN.setText(nidn);
+                jTextFieldExpertise.setText(expertise);
+                
+             
+                jTextFieldNIDN.setEditable(false);
+                
+
+                this.selectedNIDN = nidn;
+                this.nidnLama = nidn;
             }
         } catch (Exception e) {
+            System.err.println("Gagal menampilkan data ke form: " + e.getMessage());
             e.printStackTrace();
         }
     }
